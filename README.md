@@ -4,7 +4,8 @@
 :construction:  Projeto em construção  :construction:
 </h4>
 
-![Imagem kotlin](../kotlin.png)
+![Imagem kotlin](../kotlin.png)![kotlin](https://user-images.githubusercontent.com/69203877/168500953-4fa7a815-63a1-4dc1-a452-4dd4b97312c7.png)
+
 
 Descrição do Projeto
 * [O que é kotlin]  :ballot_box_with_check:
