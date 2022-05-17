@@ -18,5 +18,4 @@ Descrição do Projeto
 * [Atalhos no teclado] :ballot_box_with_check:
 
 Próxima aula - Utilizando estruturas condicionais
-* [Utilizando estrurura de repeditção] :ballot_box_with_check:
-* [Procedural vs Orientação a Objetos]
+* [Utilizando estrurura de repeditção] 
