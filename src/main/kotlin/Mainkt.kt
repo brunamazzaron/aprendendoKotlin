@@ -108,6 +108,8 @@ fun admConta(){
 }
 
 fun conta(){
+    //Ao trabalhar com Orientação a Objetos, precisamos ficar atentos ao usar uma variável por conta da atribuição por cópia ou referência. Ao alterar uma variável de um objeto, todas as variáveis que apontam para o objeto enxergam o mesmo valor.
+    //Utilizar uma referência, qualquer modificação que é feita no objeto é único para todas as variáveis que apontam para a referência.
     val contaJoao = Conta()
     contaJoao.titular = "-----João-----"
     contaJoao.numeroConta = 12234
@@ -120,6 +122,9 @@ fun conta(){
 
     println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
     println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.saldo}")
+
+    println(contaJoao)
+    println(contaMaria)
 }
 
 fun variaveis(){
