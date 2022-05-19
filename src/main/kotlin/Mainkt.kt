@@ -107,6 +107,21 @@ fun admConta(){
     println(contaFran.saldo)
 }
 
+fun conta(){
+    val contaJoao = Conta()
+    contaJoao.titular = "-----João-----"
+    contaJoao.numeroConta = 12234
+    contaJoao.saldo = 12.234
+
+    val contaMaria = Conta()
+    contaMaria.titular = "-----Maria-----"
+    contaMaria.numeroConta = 12234678
+    contaMaria.saldo = 10.234
+
+    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
+    println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.saldo}")
+}
+
 fun variaveis(){
     val numero = 10
     var numeroX = numero
@@ -128,4 +143,5 @@ fun main() {
     usandoWhile()
     admConta()
     variaveis()
+    conta()
 }
