@@ -83,6 +83,42 @@ fun pula(){
     }
 }
 
+class Conta{
+    var titular = ""
+    var numeroConta = 0
+    var saldo = 0.0
+}
+
+fun admConta(){
+    val contaAlex = Conta()
+    contaAlex.titular = "----Alex-----"
+    contaAlex.numeroConta = 123
+    contaAlex.saldo = 4000.00
+    println(contaAlex.titular)
+    println(contaAlex.numeroConta)
+    println(contaAlex.saldo)
+
+    val contaFran = Conta()
+    contaFran.titular = "----Fran----"
+    contaFran.numeroConta = 1234
+    contaFran.saldo = 5000.00
+    println(contaFran.titular)
+    println(contaFran.numeroConta)
+    println(contaFran.saldo)
+}
+
+fun variaveis(){
+    val numero = 10
+    var numeroX = numero
+    numeroX++
+
+    var numeroY = numeroX
+    numeroY++
+
+    println("--variaveis primitivas--$numeroX")
+    println("--variaveis primitivas--$numeroY")
+}
+
 fun main() {
     bytebank()
     testaCondicoes(saldo)
@@ -90,4 +126,6 @@ fun main() {
     down()
     pula()
     usandoWhile()
+    admConta()
+    variaveis()
 }
