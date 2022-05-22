@@ -83,10 +83,24 @@ fun pula(){
     }
 }
 
+//As classes são as responsáveis por modificar seus atributos.
+//A boa prática de orientação a objetos é que qualquer comportamento
+// que ajuste o estado da classe (modifique os atributos), deve ser implementado pela própria classe.
 class Conta{
     var titular = ""
     var numeroConta = 0
     var saldo = 0.0
+
+    //funçao membro de uma classe, métodos ou comportamentos da classe
+    fun deposita(valor: Double){
+        this.saldo += valor
+    }
+
+    fun saca(valor: Double){
+        if(saldo >= valor){
+            saldo -= valor
+        }
+    }
 }
 
 fun admConta(){
@@ -107,25 +121,49 @@ fun admConta(){
     println(contaFran.saldo)
 }
 
-fun conta(){
+fun contas(){
     //Ao trabalhar com Orientação a Objetos, precisamos ficar atentos ao usar uma variável por conta da atribuição por cópia ou referência. Ao alterar uma variável de um objeto, todas as variáveis que apontam para o objeto enxergam o mesmo valor.
     //Utilizar uma referência, qualquer modificação que é feita no objeto é único para todas as variáveis que apontam para a referência.
     val contaJoao = Conta()
     contaJoao.titular = "-----João-----"
-    contaJoao.numeroConta = 12234
-    contaJoao.saldo = 12.234
+    contaJoao.numeroConta = 123
+    contaJoao.saldo = 200.00
 
     val contaMaria = Conta()
     contaMaria.titular = "-----Maria-----"
-    contaMaria.numeroConta = 12234678
-    contaMaria.saldo = 10.234
+    contaMaria.numeroConta = 122
+    contaMaria.saldo = 100.00
 
     println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
     println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.saldo}")
 
-    println(contaJoao)
-    println(contaMaria)
+
+
+    contaMaria.deposita( 50.00)
+    contaJoao.deposita(100.00)
+//    contaMaria.saldo += 100.00
+//    contaJoao.saldo += 50.00
+
+    println("Conta Joao:${ contaJoao.titular },Numero da conta ${contaJoao.numeroConta}, Saldo atualizado ${contaJoao.saldo}")
+    println("Conta Maria:${contaMaria.titular},Numero da conta ${ contaMaria.numeroConta }, Saldo atualizado ${contaMaria.saldo}")
+
+    println("saque conta Joao")
+    contaJoao.saca(200.00)
+    println(contaJoao.saldo)
+
+    println("saque conta Maria")
+    contaMaria.saca(200.00)
+    println(contaMaria.saldo)
+
+    println("saque conta EM EXCESSO Joao")
+    contaJoao.saca(100.00)
+    println(contaJoao.saldo)
+
+    println("saque conta EM EXCESSO Maria")
+    contaMaria.saca(150.00)
+    println(contaMaria.saldo)
 }
+
 
 fun variaveis(){
     val numero = 10
@@ -148,5 +186,5 @@ fun main() {
     usandoWhile()
     admConta()
     variaveis()
-    conta()
+    contas()
 }
