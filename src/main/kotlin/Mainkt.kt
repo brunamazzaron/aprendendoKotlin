@@ -101,6 +101,16 @@ class Conta{
             saldo -= valor
         }
     }
+
+    // sempre retorna alguma coisa o Unit serve pra isso
+    fun transferir(valor: Double, destino: Conta): Boolean{
+        if(saldo >= valor){
+            saldo -= valor
+            destino.saldo += valor
+            return true
+        }
+            return false
+        }
 }
 
 fun admConta(){
@@ -108,17 +118,37 @@ fun admConta(){
     contaAlex.titular = "----Alex-----"
     contaAlex.numeroConta = 123
     contaAlex.saldo = 4000.00
-    println(contaAlex.titular)
-    println(contaAlex.numeroConta)
-    println(contaAlex.saldo)
+    println("Deposito: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
+
 
     val contaFran = Conta()
     contaFran.titular = "----Fran----"
     contaFran.numeroConta = 1234
     contaFran.saldo = 5000.00
-    println(contaFran.titular)
-    println(contaFran.numeroConta)
-    println(contaFran.saldo)
+    println("Deposito: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+
+
+    contaFran.deposita( 150.00)
+    println("Deposito: Conta Fran:${contaFran.saldo}")
+
+    contaAlex.deposita(150.00)
+    println("Deposito: Conta Alex:${contaAlex.saldo}")
+
+    contaAlex.saca(1000.00)
+    contaFran.saca(1000.00)
+
+    println("Saque:")
+    println("Saca: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
+    println("Saca: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+
+    println("transferencia:")
+    if(contaAlex.transferir(200.00, contaFran)){
+        println("Sucesso")
+        println("transferencia: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
+        println("transferencia: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+    }else{
+        return println("Falha!")
+    }
 }
 
 fun contas(){
@@ -127,41 +157,63 @@ fun contas(){
     val contaJoao = Conta()
     contaJoao.titular = "-----João-----"
     contaJoao.numeroConta = 123
-    contaJoao.saldo = 200.00
+    contaJoao.saldo = 600.00
 
     val contaMaria = Conta()
     contaMaria.titular = "-----Maria-----"
     contaMaria.numeroConta = 122
-    contaMaria.saldo = 100.00
+    contaMaria.saldo = 900.00
 
-    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
     println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.saldo}")
-
-
+    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
 
     contaMaria.deposita( 50.00)
     contaJoao.deposita(100.00)
 //    contaMaria.saldo += 100.00
 //    contaJoao.saldo += 50.00
 
+
     println("Conta Joao:${ contaJoao.titular },Numero da conta ${contaJoao.numeroConta}, Saldo atualizado ${contaJoao.saldo}")
     println("Conta Maria:${contaMaria.titular},Numero da conta ${ contaMaria.numeroConta }, Saldo atualizado ${contaMaria.saldo}")
 
     println("saque conta Joao")
-    contaJoao.saca(200.00)
+    contaJoao.saca(20.00)
     println(contaJoao.saldo)
 
     println("saque conta Maria")
-    contaMaria.saca(200.00)
+    contaMaria.saca(20.00)
     println(contaMaria.saldo)
 
     println("saque conta EM EXCESSO Joao")
-    contaJoao.saca(100.00)
+    contaJoao.saca(0.10)
     println(contaJoao.saldo)
 
     println("saque conta EM EXCESSO Maria")
-    contaMaria.saca(150.00)
+    contaMaria.saca(0.10)
     println(contaMaria.saldo)
+
+    println("Transferencia 1")
+    if(contaMaria.transferir(200.00, contaJoao)){
+        println("sucesso!")
+    }else{
+        println("falha!")
+    }
+
+
+    println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.saldo}")
+    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.saldo}")
+
+
+    println("Transferencia 2")
+    if(contaJoao.transferir(900.00, contaMaria)){
+        println("sucesso!")
+    }else{
+        println("falha!")
+    }
+
+    println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.saldo}")
+    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.saldo}")
+
 }
 
 
