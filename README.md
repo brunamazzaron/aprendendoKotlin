@@ -18,9 +18,13 @@ Descrição do Projeto
 * [Uso de if e when] :ballot_box_with_check:
 * [Atalhos no teclado] :ballot_box_with_check:
 
-Próxima aula - Utilizando estruturas condicionais
+Próximas aulas - Utilizando estruturas condicionais
 * [Utilizando estrurura de repeditção] :ballot_box_with_check:
 * [Estruturas condicionais] :ballot_box_with_check:
 * [Estruturas de repetição] :ballot_box_with_check:
 * [Diferença entre programação procedural e orientada a objetos] :ballot_box_with_check:
+* [A criar métodos de classe] :ballot_box_with_check:
+* [Reutilizar código da própria classe] :ballot_box_with_check:
+* [Encapsular atributos com métodos de acesso] :ballot_box_with_check:
+* [Restringir acesso de atributos com modificadores de acesso] :ballot_box_with_check:
 
