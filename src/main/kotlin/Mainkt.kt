@@ -1,87 +1,3 @@
-var mensagem = "Bem vindo ao bytebank"
-var titular = "Bruna"
-var conta = 12345
-var saldo = -4.0
-var i = 0
-fun bytebank(){
-    println("$mensagem, Olá $titular, número da conta: $conta, saldo da conta: R$$saldo,00")
-}
-
-fun testaCondicoes(saldo: Double){
-    if( saldo > 0.0){
-        println(" USANDO IF ->> Conta positiva")
-    }else if(saldo == 0.0){
-        println("USANDO IF ->> Conta neutra")
-    }else{
-        println("USANDO IF ->> Conta negativa")
-    }
-
-    //Lembre-se que o plugin do Kotlin para o IntelliJ verifica as possíveis conversões. Para isso, utilize o atalho Alt + Enter quando aparecer o código sublinhado.
-    when {
-        saldo > 0.0 -> {
-            println("USANDO WHEN ->> Conta positiva")
-        }
-        saldo == 0.0 -> {
-            println("USANDO WHEN ->> Conta neutra")
-        }
-        else -> {
-            println("USANDO WHEN ->> Conta negativa")
-        }
-    }
-
-    //Lembra um switch case
-    when {
-        saldo > 0.0 -> println("USANDO WHEN EXPRESSION->> Conta positiva")
-        saldo == 0.0 -> println("USANDO WHEN EXPRESSION ->> Conta neutra")
-        else -> println("USANDO WHEN EXPRESSION ->> Conta negativa")
-    }
-}
-
-fun loop(){
-    for (i in 1..3) {
-        var mensagem = "Bem vindo ao bytebank"
-        var titular = "Bruna"
-        var conta = 12345 + i
-        var saldo = -4.0 + i
-        println("$mensagem, Olá $titular, número da conta: $conta, saldo da conta: R$$saldo,00")
-    }
-}
-
-fun down(){
-    for (i in 5 downTo 1) {
-        if (i == 4){
-            break //continue
-        }
-        var mensagem = "Bem vindo ao bytebank"
-        var titular = "Bruna"
-        var conta = 1 + i
-        var saldo = -4.0 + i
-        println("USANDO O DOWNTO: $mensagem, Olá $titular, número da conta: $conta, saldo da conta: R$$saldo,00")
-    }
-}
-
-
-fun usandoWhile(){
-    var mensagem = "Bem vindo ao bytebank"
-    var titular = "Bruna"
-    var conta = 12345 + i
-    var saldo = 4.0 + i
-    while (i < 5) {
-        println("USANDO O WHILE: $mensagem, Olá $titular, número da conta: $conta, saldo da conta: R$$saldo,00")
-        i++;
-    }
-}
-
-
-fun pula(){
-    for (i in 3 downTo 1 step 2) {
-        var mensagem = "Bem vindo ao bytebank"
-        var titular = "Bruna"
-        var conta = 12345 + i
-        var saldo = -4.0 + i
-        println("USANDO O Step: $mensagem, Olá $titular, número da conta: $conta, saldo da conta: R$$saldo,00")
-    }
-}
 
 //As classes são as responsáveis por modificar seus atributos.
 //A boa prática de orientação a objetos é que qualquer comportamento
@@ -89,13 +5,21 @@ fun pula(){
 class Conta{
     var titular = ""
     var numeroConta = 0
-    //dessa forma nao deixamos o saldo acessivel
-    private var saldo = 0.0
+    var saldo = 0.0
+        private set
+    //sempre acessa por meio de um set ou um get
+        //field receve o valor inicial
+    //chamado de proprites
+    // serve para alterar o valor
 
     //funçao membro de uma classe, métodos ou comportamentos da classe
     fun deposita(valor: Double){
-        this.saldo += valor
+        if(valor > 0) {
+            this.saldo += valor
+        }
     }
+//Properties apresentam o mesmo comportamento de
+// métodos de acesso e é mais idiomático ao Kotlin.
 
     fun saca(valor: Double){
         if(saldo >= valor){
@@ -118,141 +42,86 @@ class Conta{
             return false
         }
 
-    fun getSaldo(): Double{
-        return saldo
-    }
-
-    fun setSaldo(valor : Double){
-         if(saldo > 0){
-             saldo = valor
-         }
-    }
 }
 
 fun admConta(){
-    val contaAlex = Conta()
-    contaAlex.titular = "----Alex-----"
-    contaAlex.numeroConta = 123
-    contaAlex.setSaldo(4000.00)
-    println("Deposito: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.getSaldo()}")
-
-
-    val contaFran = Conta()
-    contaFran.titular = "----Fran----"
-    contaFran.numeroConta = 1234
-    contaFran.setSaldo(5000.00)
-    println("Deposito: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.getSaldo()}")
-
-
-    contaFran.deposita( 150.00)
-    println("Deposito: Conta Fran:${contaFran.getSaldo()}")
-
-    contaAlex.deposita(150.00)
-    println("Deposito: Conta Alex:${contaAlex.getSaldo()}")
-
-    contaAlex.saca(1000.00)
-    contaFran.saca(1000.00)
-
-    println("Saque:")
-    println("Saca: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.getSaldo()}")
-    println("Saca: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.getSaldo()}")
-
-    println("transferencia:")
-    if(contaAlex.transferir(200.00, contaFran)){
-        println("Sucesso")
-        println("transferencia: Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.getSaldo()}")
-        println("transferencia: Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.getSaldo()}")
-    }else{
-        return println("Falha!")
-    }
-}
-
-fun contas(){
-    //Ao trabalhar com Orientação a Objetos, precisamos ficar atentos ao usar uma variável por conta da atribuição por cópia ou referência. Ao alterar uma variável de um objeto, todas as variáveis que apontam para o objeto enxergam o mesmo valor.
+    //Ao trabalhar com Orientação a Objetos, precisamos ficar atentos ao usar uma variável por conta da atribuição por cópia ou referência.
+    // Ao alterar uma variável de um objeto, todas as variáveis que apontam para o objeto enxergam o mesmo valor.
     //Utilizar uma referência, qualquer modificação que é feita no objeto é único para todas as variáveis que apontam para a referência.
     val contaJoao = Conta()
     contaJoao.titular = "-----João-----"
     contaJoao.numeroConta = 123
-    contaJoao.setSaldo(600.00)
+    contaJoao.deposita(600.00)
+    println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.saldo}")
 
     val contaMaria = Conta()
     contaMaria.titular = "-----Maria-----"
     contaMaria.numeroConta = 122
-    contaMaria.setSaldo(900.00)
+    contaMaria.deposita(900.00)
+    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.saldo}")
 
-    println("Conta Joao:${ contaJoao.titular }, ${contaJoao.numeroConta}, ${contaJoao.getSaldo()}")
-    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, ${contaMaria.getSaldo()}")
+    val contaAlex = Conta()
+    contaAlex.titular = "----Alex-----"
+    contaAlex.numeroConta = 111
+    contaAlex.deposita(4000.00)
+    println("Conta Alex:${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
 
+    val contaFran = Conta()
+    contaFran.titular = "----Fran----"
+    contaFran.numeroConta = 133
+    contaFran.deposita(5000.00)
+    println("Conta Fran:${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+
+    println("-----Deposito-----")
     contaMaria.deposita( 50.00)
+    println("Deposito: -----Maria----- ${contaMaria.saldo}")
+
     contaJoao.deposita(100.00)
+    println("Deposito: -----Joao----- ${contaJoao.saldo}")
 //    contaMaria.saldo += 100.00
 //    contaJoao.saldo += 50.00
 
+    contaFran.deposita( 150.00)
+    println("Deposito: -----Fran-----${contaFran.saldo}")
 
-    println("Conta Joao:${ contaJoao.titular },Numero da conta ${contaJoao.numeroConta}, Saldo atualizado ${contaJoao.getSaldo()}")
-    println("Conta Maria:${contaMaria.titular},Numero da conta ${ contaMaria.numeroConta }, Saldo atualizado ${contaMaria.getSaldo()}")
+    contaAlex.deposita(150.00)
+    println("Deposito: -----Alex----- ${contaAlex.saldo}")
 
-    println("saque conta Joao")
+    println("----Saque----")
     contaJoao.saca(20.00)
-    println(contaJoao.getSaldo())
-
-    println("saque conta Maria")
     contaMaria.saca(20.00)
-    println(contaMaria.getSaldo())
+
+    contaAlex.saca(1000.00)
+    contaFran.saca(1000.00)
+
+    println("Saca: ----Alex-----${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
+    println("Saca: ----Fran-----${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+
+    println("-----Transferencia-----")
+    if(contaAlex.transferir(200.00, contaFran)){
+        println("Sucesso")
+        println("transferencia: ----Alex----${ contaAlex.titular }, ${contaAlex.numeroConta}, ${contaAlex.saldo}")
+        println("transferencia: ----Fran-----${contaFran.titular}, ${ contaFran.numeroConta }, ${contaFran.saldo}")
+    }else if(contaMaria.transferir(200.00, contaJoao)) {
+        println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.saldo}")
+        println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.saldo}")
+    }else if(contaJoao.transferir(900.00, contaMaria)){
+        println("sucesso!")
+        println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.saldo}")
+        println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.saldo}")
+    }else{
+        return println("Falha!")
+    }
 
     println("saque conta EM EXCESSO Joao")
     contaJoao.saca(0.10)
-    println(contaJoao.getSaldo())
+    println(contaJoao.saldo)
 
     println("saque conta EM EXCESSO Maria")
     contaMaria.saca(0.10)
-    println(contaMaria.getSaldo())
-
-    println("Transferencia 1")
-    if(contaMaria.transferir(200.00, contaJoao)){
-        println("sucesso!")
-    }else{
-        println("falha!")
-    }
-
-
-    println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.getSaldo()}")
-    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.getSaldo()}")
-
-
-    println("Transferencia 2")
-    if(contaJoao.transferir(900.00, contaMaria)){
-        println("sucesso!")
-    }else{
-        println("falha!")
-    }
-
-    println("Conta Joao:${contaJoao.titular}, ${ contaJoao.numeroConta }, Transferência: ${contaJoao.getSaldo()}")
-    println("Conta Maria:${contaMaria.titular}, ${ contaMaria.numeroConta }, Transferência: ${contaMaria.getSaldo()}")
-
-}
-
-
-fun variaveis(){
-    val numero = 10
-    var numeroX = numero
-    numeroX++
-
-    var numeroY = numeroX
-    numeroY++
-
-    println("--variaveis primitivas--$numeroX")
-    println("--variaveis primitivas--$numeroY")
+    println(contaMaria.saldo)
 }
 
 fun main() {
-    bytebank()
-    testaCondicoes(saldo)
-    loop()
-    down()
-    pula()
-    usandoWhile()
     admConta()
-    variaveis()
-    contas()
 }
