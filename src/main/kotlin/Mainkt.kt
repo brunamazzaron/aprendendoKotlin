@@ -7,10 +7,13 @@ class Conta{
     var numeroConta = 0
     var saldo = 0.0
         private set
+    //se quiser criar uma representaçao de uma pessoa em crio uma pessoa, cria as regras
     //sempre acessa por meio de um set ou um get
-        //field receve o valor inicial
+    //field receve o valor inicial
     //chamado de proprites
     // serve para alterar o valor
+
+    constructor()
 
     //funçao membro de uma classe, métodos ou comportamentos da classe
     fun deposita(valor: Double){
@@ -48,7 +51,7 @@ fun admConta(){
     //Ao trabalhar com Orientação a Objetos, precisamos ficar atentos ao usar uma variável por conta da atribuição por cópia ou referência.
     // Ao alterar uma variável de um objeto, todas as variáveis que apontam para o objeto enxergam o mesmo valor.
     //Utilizar uma referência, qualquer modificação que é feita no objeto é único para todas as variáveis que apontam para a referência.
-    val contaJoao = Conta()
+    val contaJoao = Conta() // eu instanciei a classe Conta()
     contaJoao.titular = "-----João-----"
     contaJoao.numeroConta = 123
     contaJoao.deposita(600.00)
@@ -122,6 +125,42 @@ fun admConta(){
     println(contaMaria.saldo)
 }
 
+//reforçando:
+//Classe representaçao de um item fisico, ideias ou conceitos abstratos do mundo real
+// atributos sao as propriedades e os metodos sendo as funcionalidades
+
+//Classes orginam uma instâncias sob requisiçao no processo de instanciaçao
+
+//as instancias sao chamadas de objetos
+
+//
+
+data class Pessoa( val name: String,  val id: Number,  val cpf: String,  val prof: String){
+    constructor(name: String) : this(name,1,"", "")
+    constructor(name: String, prof: String) : this(name,2,"", prof)
+    constructor(enfermeiro: Enfermeiro) : this(enfermeiro.name, enfermeiro.prof)
+}
+
+data class Enfermeiro(val name: String, var prof: String) {
+
+    fun medicar(){
+        println("medicado")
+    }
+}
+
+
 fun main() {
-    admConta()
+    //admConta()
+    val pessoa1 = Pessoa( "Bruna", 123, "1239484", "Professor")
+    println(pessoa1)
+
+    val pessoa2 = Pessoa(name = "Clara")
+    println(pessoa2)
+
+    val enfermeiro1 = Enfermeiro("Cleber", "Enfermeiro" )
+    enfermeiro1.medicar()
+
+    val pessoa3 = Pessoa(enfermeiro1)
+    println(pessoa3)
+
 }
