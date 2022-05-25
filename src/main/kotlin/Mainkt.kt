@@ -3,8 +3,8 @@
 //A boa prática de orientação a objetos é que qualquer comportamento
 // que ajuste o estado da classe (modifique os atributos), deve ser implementado pela própria classe.
 class Conta(titular: String, numeroConta: Int){
-    var titular = titular //Inicializacao de propriets
-    var numeroConta = numeroConta
+    val titular = titular //Inicializacao de propriets
+    val numeroConta = numeroConta
     var saldo = 0.0
         private set // só nossa classe pode modificar
     //se quiser criar uma representaçao de uma pessoa em crio uma pessoa, cria as regras

@@ -27,4 +27,11 @@ Próximas aulas - Utilizando estruturas condicionais
 * [Reutilizar código da própria classe] :ballot_box_with_check:
 * [Encapsular atributos com métodos de acesso] :ballot_box_with_check:
 * [Restringir acesso de atributos com modificadores de acesso] :ballot_box_with_check:
+* [O que são properties e como utilizar o getter e setter]:ballot_box_with_check:
+* [Modificar o comportamento e acesso padrão de properties]:ballot_box_with_check:
+* [O que são construtores e os dois construtores do Kotlin;]:ballot_box_with_check:
+* [Como implementar um construtor personalizado;] :ballot_box_with_check:
+* [Criar objetos exigindo valores;] :ballot_box_with_check:
+* [Enviar argumentos nomeados por meio de labels;]  :ballot_box_with_check:
+* [Ajuste de código para um padrão mais idiomático ao Kotlin.]:ballot_box_with_check:
 
